@@ -22,18 +22,22 @@ public class Billing {
     private List<Invoice> invoices;
     private Map<String, Customer> customers;
     private List<Consumer<Invoice>> invoiceListeners;
+    private List<Consumer<Customer>> customerListeners;
+    private int maxInvoiceNumber;
 
     public Billing(String customerFileName, String invoiceFileName){
         this.customerFileName = customerFileName;
         this.invoiceFileName = invoiceFileName;
         parser = ParserFactory.createParser(customerFileName);
         invoiceListeners = new ArrayList<Consumer<Invoice>>();
+        customerListeners = new ArrayList<Consumer<Customer>>();
         try {
             customers = parser.parseCustomers(new BufferedReader(new FileReader(customerFileName)).lines()).collect(Collectors.toMap(Customer::getName, Function.identity()));
             invoices = parser.parseInvoices(new BufferedReader(new FileReader(invoiceFileName)).lines(), customers).collect(Collectors.toList());
         }catch(Exception e){
             throw new RuntimeException("ERROR: File not found:\n" + e.getStackTrace());
         }
+        maxInvoiceNumber = getMaxInvoiceNumber();
     }
 
     public List<Invoice> getInvoices(){
@@ -53,12 +57,16 @@ public class Billing {
     }
 
     public Stream<Invoice> getOverdueInvoices(){
-        return invoices.stream().filter( i -> (i.getPaidDate().isEmpty() && i.getInvoiceDate().plusDays(i.getCustomer().getTerms().getDays()).isBefore(LocalDate.now())) || i.getInvoiceDate().plusDays(i.getCustomer().getTerms().getDays()).isBefore(i.getPaidDate().get()) );
+        return invoices.stream().filter( i -> (i.getPaidDate().isEmpty() && i.getInvoiceDate().plusDays(i.getCustomer().getTerms().getDays()).isBefore(LocalDate.now())) || (i.getPaidDate().isPresent() && i.getInvoiceDate().plusDays(i.getCustomer().getTerms().getDays()).isBefore(i.getPaidDate().get())) );
     }
 
-    /*public Stream<Map<Customer, Double>> getCustomersAndVolume(){
-       return getInvoicesGroupedByCustomer().map(i -> new HashMap<Customer, Double>().put(i.get(0).getCustomer(), i.stream().mapToDouble(v -> v.getAmount()).sum()));
-    }*/
+    public Stream<Map.Entry<Customer, Double>> getCustomersAndVolume(){
+        return invoices.stream().collect(Collectors.groupingBy(i -> i.getCustomer(), Collectors.summingDouble(a -> a.getAmount()))).entrySet().stream().sorted((a1, a2) -> Double.compare(a2.getValue(), a1.getValue()));
+    }
+
+    private int getMaxInvoiceNumber(){
+        return invoices.stream().max((i1, i2) -> Integer.compare(i1.getNumber(), i2.getNumber())).map(i -> i.getNumber()).orElse(0);
+    }
 
     @SneakyThrows
     public void saveCustomers(){
@@ -84,6 +92,18 @@ public class Billing {
         }
     }
 
+    public void createCustomer(String firstName, String lastName, Terms terms){
+        Customer newCustomer = new Customer(firstName, lastName, terms);
+        customers.put(newCustomer.getName(), newCustomer);
+        customerListeners.stream().forEach(l -> l.accept(customers.get(newCustomer.getName())));
+    }
+
+    public void createInvoice(String name, double amount){
+        invoices.add(new Invoice(maxInvoiceNumber+1, amount, LocalDate.now(), Optional.empty(), customers.get(name)));
+        maxInvoiceNumber += 1;
+        invoiceListeners.stream().forEach(l -> l.accept(invoices.get(invoices.size()-1)));
+    }
+
     public void addInvoiceListener(Consumer<Invoice> listener){
         invoiceListeners.add(listener);
     }
@@ -92,11 +112,15 @@ public class Billing {
         invoiceListeners.remove(listener);
     }
 
+    public void addCustomerListener(Consumer<Customer> listener){
+        customerListeners.add(listener);
+    }
+
+    public void removeCustomerListener(Consumer<Customer> listener){
+        customerListeners.remove(listener);
+    }
+
     public static void main(String[] args){
-        List<Invoice> invList = new ArrayList<Invoice>();
-        invList.add(new Invoice(0, 15.0, LocalDate.now(), Optional.of(LocalDate.now()), null));
-        invList.add(new Invoice(0, 10.5, LocalDate.now(), Optional.of(LocalDate.now()), null));
-        double sum = invList.stream().mapToDouble(v -> v.getAmount()).sum();
         Billing billingSystem = new Billing("Starter/data/customers.csv", "Starter/data/invoices.csv");
     }
 

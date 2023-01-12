@@ -26,3 +26,5 @@ All invoices, ordered by invoice number
  122  Jerry Reed                2021-11-27    1,440.00            
  123  Bonnie Raitt              2021-11-26    1,500.00  2021-11-30
  124  Johnny Cash               2021-11-30      750.00            
+ 125  Merle Haggard             2023-01-12      100.00            
+ 126  John Hiatt                2023-01-12      999.00            

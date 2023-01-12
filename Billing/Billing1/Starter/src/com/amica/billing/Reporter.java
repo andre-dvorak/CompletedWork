@@ -22,6 +22,7 @@ public class Reporter {
         this.reportFolder = reportFolder;
         this.asOf = asOf;
         billingSystem.addInvoiceListener(i -> onInvoiceChanged(i));
+        billingSystem.addCustomerListener(c -> onCustomerChanged(c));
     }
 
     @SneakyThrows
@@ -64,19 +65,29 @@ public class Reporter {
         }
     }
 
-    /*@SneakyThrows
+    @SneakyThrows
     public void reportCustomersAndVolume(){
         try(PrintWriter printWriter = new PrintWriter(reportFolder + "/customer_and_volume_output.txt");) {
             printWriter.println("All customers and total volume of business");
             printWriter.println(INVOICES_VOLUME);
             billingSystem.getCustomersAndVolume().forEach(i -> {
-                printWriter.printf("%-24s  %,12.2f%n", i.getCustomer().getName(), i.getAmount());
+                printWriter.printf("%-24s  %,12.2f%n", i.getKey().getName(), i.getValue());
             });
         }
-    }*/
+    }
 
     public void onInvoiceChanged(Invoice invoice){
         reportInvoicesOrderedByNumber();
+        reportOverdueInvoices();
+        reportInvoicesGroupedByCustomer();
+        reportCustomersAndVolume();
+    }
+
+    public void onCustomerChanged(Customer customer){
+        reportInvoicesOrderedByNumber();
+        reportOverdueInvoices();
+        reportInvoicesGroupedByCustomer();
+        reportCustomersAndVolume();
     }
 
 }

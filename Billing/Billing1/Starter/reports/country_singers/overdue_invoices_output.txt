@@ -4,7 +4,7 @@ Overdue invoices, ordered by issue date
        Customer                     Issued      Amount        Paid         Due
 ----  ------------------------  ----------  ----------  ----------  ----------
  106  Janis Joplin              2021-09-12      170.00              2021-12-11
- 107  Glen Campbell             2021-09-15      800.00              2021-11-14
+ 107  Glen Campbell             2021-09-15      800.00  2023-01-12  2021-11-14
  113  Patty Larkin              2021-10-12    1,000.00  2021-11-30  2021-11-11
  122  Jerry Reed                2021-11-27    1,440.00              2021-12-27
  102  Janis Joplin              2021-07-12      170.00              2021-10-10
