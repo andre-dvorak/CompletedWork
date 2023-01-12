@@ -21,10 +21,10 @@ import java.util.stream.Stream;
 public class TestCountrySingers {
 
 	public static final String CUSTOMERS_FILENAME = 
-			"Starter/data/country_singers/customers.csv";
+			"data/country_singers/customers.csv";
 	public static final String INVOICES_FILENAME = 
-			"Starter/data/country_singers/invoices.csv";
-	public static final String OUTPUT_FOLDER = "Starter/reports/country_singers";
+			"data/country_singers/invoices.csv";
+	public static final String OUTPUT_FOLDER = "reports/country_singers";
 	
 	public static void assertThat(boolean condition, String error) {
 		if (!condition) {
@@ -104,14 +104,14 @@ public class TestCountrySingers {
 	
 	public static void main(String[] args) {
 		
-		File workspace = new File("Starter/data/country_singers");
+		File workspace = new File("data/country_singers");
 		workspace.mkdir();
 		try {
 			// This sets up data files just for this test, fresh copy each time,
 			// and assures that the folders are in place to hold reports:
-			Files.copy(Paths.get("Starter/data/customers.csv"), Paths.get(CUSTOMERS_FILENAME),
+			Files.copy(Paths.get("data/customers.csv"), Paths.get(CUSTOMERS_FILENAME),
 					StandardCopyOption.REPLACE_EXISTING);
-			Files.copy(Paths.get("Starter/data/invoices.csv"), Paths.get(INVOICES_FILENAME),
+			Files.copy(Paths.get("data/invoices.csv"), Paths.get(INVOICES_FILENAME),
 					StandardCopyOption.REPLACE_EXISTING);
 			Files.createDirectories(Paths.get(OUTPUT_FOLDER));
 			

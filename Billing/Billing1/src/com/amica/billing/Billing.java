@@ -121,7 +121,7 @@ public class Billing {
     }
 
     public static void main(String[] args){
-        Billing billingSystem = new Billing("Starter/data/customers.csv", "Starter/data/invoices.csv");
+        Billing billingSystem = new Billing("data/customers.csv", "data/invoices.csv");
     }
 
 }
