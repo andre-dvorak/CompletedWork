@@ -1,0 +1,58 @@
+All invoices, grouped by customer and ordered by invoice number
+==================================================================
+
+       Customer                     Issued      Amount        Paid
+----  ------------------------  ----------  ----------  ----------
+
+Minna Gombell
+ 179  Minna Gombell             11/26/2021      300.00  11/30/2021
+
+Lionel Barrymore
+ 959  Lionel Barrymore          @TESTDATE@        9.99            
+
+Nat Pendleton
+ 294  Nat Pendleton             10/10/2021      200.00  10/20/2021
+
+Cesar Romero
+ 671  Cesar Romero              11/15/2021      221.00            
+ 795  Cesar Romero              09/15/2021      160.00            
+
+Bert Roach
+ 683  Bert Roach                09/24/2021      240.00  10/03/2021
+ 853  Bert Roach                11/26/2021      288.00            
+
+Myrna Loy
+ 661  Myrna Loy                 10/12/2021      269.00  11/03/2021
+ 958  Myrna Loy                 11/15/2021       40.00  @TESTDATE@
+
+Edward Ellis
+ 150  Edward Ellis              11/10/2021      350.00  11/10/2021
+
+Natalie Moorhead
+ 251  Natalie Moorhead          09/02/2021       61.00  11/30/2021
+ 558  Natalie Moorhead          07/25/2021       69.00  09/01/2021
+
+Skippy Asta
+ 550  Skippy Asta               09/12/2021       34.00            
+ 746  Skippy Asta               07/12/2021       34.00            
+ 813  Skippy Asta               11/12/2021       34.00            
+
+Henry Wadsworth
+ 225  Henry Wadsworth           10/12/2021      200.00  11/30/2021
+ 957  Henry Wadsworth           11/12/2021       34.00            
+
+Maureen O'Sullivan
+ 142  Maureen O'Sullivan        11/12/2021      132.00            
+ 223  Maureen O'Sullivan        10/15/2021      240.00  11/01/2021
+
+Porter Hall
+ 133  Porter Hall               08/26/2021      200.00  10/01/2021
+ 419  Porter Hall               07/10/2021      200.00  10/01/2021
+ 960  Porter Hall               @TESTDATE@      133.00            
+
+William Powell
+ 764  William Powell            11/30/2021      150.00            
+
+Edward Brophy
+ 523  Edward Brophy             10/01/2021      266.00  10/20/2021
+ 914  Edward Brophy             08/23/2021      100.00  09/07/2021
