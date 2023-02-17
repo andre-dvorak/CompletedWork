@@ -1,0 +1,30 @@
+All invoices, ordered by invoice number
+==================================================================
+
+       Customer                     Issued      Amount        Paid
+----  ------------------------  ----------  ----------  ----------
+ 133  Porter Hall               08/26/2021      200.00  10/01/2021
+ 142  Maureen O'Sullivan        11/12/2021      132.00            
+ 150  Edward Ellis              11/10/2021      350.00  11/10/2021
+ 179  Minna Gombell             11/26/2021      300.00  11/30/2021
+ 223  Maureen O'Sullivan        10/15/2021      240.00  11/01/2021
+ 225  Henry Wadsworth           10/12/2021      200.00  11/30/2021
+ 251  Natalie Moorhead          09/02/2021       61.00  11/30/2021
+ 294  Nat Pendleton             10/10/2021      200.00  10/20/2021
+ 419  Porter Hall               07/10/2021      200.00  10/01/2021
+ 523  Edward Brophy             10/01/2021      266.00  10/20/2021
+ 550  Skippy Asta               09/12/2021       34.00            
+ 558  Natalie Moorhead          07/25/2021       69.00  09/01/2021
+ 661  Myrna Loy                 10/12/2021      269.00  11/03/2021
+ 671  Cesar Romero              11/15/2021      221.00            
+ 683  Bert Roach                09/24/2021      240.00  10/03/2021
+ 746  Skippy Asta               07/12/2021       34.00            
+ 764  William Powell            11/30/2021      150.00            
+ 795  Cesar Romero              09/15/2021      160.00            
+ 813  Skippy Asta               11/12/2021       34.00            
+ 853  Bert Roach                11/26/2021      288.00            
+ 914  Edward Brophy             08/23/2021      100.00  09/07/2021
+ 957  Henry Wadsworth           11/12/2021       34.00            
+ 958  Myrna Loy                 11/15/2021       40.00  @TESTDATE@
+ 959  Lionel Barrymore          @TESTDATE@        9.99            
+ 960  Porter Hall               @TESTDATE@      133.00            

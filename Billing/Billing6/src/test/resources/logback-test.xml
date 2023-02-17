@@ -1,0 +1,12 @@
+<!-- Adjust here to allow more detailed logging during tests.
+     Beware that many tests will produce much larger log
+     files without this configuration, and may be hard to read. -->
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <logger name="com.zaxxer" level="WARN"/>
+    <logger name="org.apache.activemq" level="WARN"/>
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.springframework" level="OFF"/>
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.reflections8" level="OFF" />
+</configuration>
